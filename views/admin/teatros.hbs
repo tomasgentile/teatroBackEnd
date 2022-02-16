@@ -1,0 +1,61 @@
+<nav class="navbar navbar-light justify-content-center" style="background-color: #f6f7f8;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/obras">Obras</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cursos">Cursos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin/teatros">Teatros</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container mt-2">
+    {{!-- Fila 1 --}}
+    <div class="row  mt-4">
+        <div class="col">
+            <p class="text-end">Hola {{usuario}}! <a class="btn btn-danger" href="/admin/login/logout">Cerrar sesión <i class="fa fa-sign-out"></i></a></p>
+        </div>
+    </div>
+    {{!-- Fila 2 --}}
+    <div class="row">
+        <div class="col-7">
+            <h2>Listado de Teatros</h2>
+        </div>
+        <div class="col-5 text-end">
+            <a href="/admin/teatros/insertTeatros" class="btn btn-success">Nuevo <i class="fa fa-plus"></i></a>
+        </div>
+    </div>
+    {{!-- Fila 3 --}}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Imágen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">eMail</th>
+                        <th scope="col" class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <body>
+                    {{#each teatros}}
+                        <tr>
+                            <td>{{{imagen}}}</td>
+                            <td>{{nombre_teatro}}</td>
+                            <td>{{direccion}}</td>
+                            <td>{{{mail}}}</td>
+                            <td class="text-end">
+                                <a href="/admin/teatros/updateTeatros/{{id_teatro}}" class="btn btn-sm btn-secondary"><i class="fas fa-pencil"></i></a>
+                                <a href="/admin/teatros/deleteTeatros/{{id_teatro}}" class="btn btn-sm btn-secondary"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </body>
+            </table>
+        </div>
+    </div>
+</div>

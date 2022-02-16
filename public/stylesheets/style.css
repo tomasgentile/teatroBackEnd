@@ -1,0 +1,36 @@
+body {
+  font-family: 'Bitter', serif;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5em;
+}
+
+header h1 {
+  color:#f5c518;
+  font-size: 2em;
+  margin: auto 0;
+  padding: 0.3em 0;
+}
+
+header h2 {
+  color:#f5c518;
+  margin: auto 0;
+}
+
+footer {
+  color: white;
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 2em 0;
+  margin-top: 2em; 
+}
+
