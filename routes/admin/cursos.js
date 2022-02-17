@@ -49,7 +49,7 @@ router.post('/insertCursos', async function (req, res, next) {
     let teatros = await teatrosModels.getTeatros();
     var img_id_curso = '';
 
-    if (req.files.imagen && Object.keys(req.files.imagen).length > 0) {
+    if (req.files && Object.keys(req.files.imagen).length > 0) {
         var imagen = req.files.imagen;
         img_id_curso = (await uploader(imagen.tempFilePath)).public_id;
     }

@@ -26,18 +26,27 @@ router.get('/obras', async function (req, res, next) {
                 imagen: ''
             }
         }
-    })
+    });
+
+    /* Ordena las obras por fecha de inicio */
+    obras = obras.sort((a, b) => a.fecha_inicio.getTime() - b.fecha_inicio.getTime());
+
+    /* Elimina las obras que ya no estan en cartelera y cambia el formato de la fecha */
+    const today = new Date();
+    obras = obras.filter(obra => {
+        if (obra.fecha_fin > today) {
+            return obra;
+        }
+    });
 
     res.json(obras);
 });
 
 router.get('/cursos', async function (req, res, next) {
     let cursos = await cursosModels.getCursos();
+    const today = new Date();
 
     cursos = cursos.map(curso => {
-        curso.fecha_inicio = curso.fecha_inicio.toISOString().split('T')[0];
-        curso.fecha_fin = curso.fecha_fin.toISOString().split('T')[0];
-        console.log(curso.fecha_inicio);
         if (curso.img_id_curso) {
             const imagen = cloudinary.url(curso.img_id_curso, {
                 width: 185,
@@ -54,7 +63,17 @@ router.get('/cursos', async function (req, res, next) {
                 imagen: ''
             }
         }
-    })
+    });
+
+    /* Ordena los cursos por fecha de inicio */
+    cursos = cursos.sort((a, b) => a.fecha_inicio.getTime() - b.fecha_inicio.getTime());
+
+    /* Elimina los cursos que ya no estan en cartelera */
+    cursos = cursos.filter(curso => {
+        if (curso.fecha_fin > today) {
+            return curso;
+        }
+    });
 
     res.json(cursos);
 });
@@ -107,6 +126,6 @@ router.post('/contacto', async (req, res) => {
         error: false,
         message: 'Mensaje enviado'
     });
-})
+});
 
 module.exports = router;
