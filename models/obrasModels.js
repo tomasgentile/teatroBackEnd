@@ -1,7 +1,7 @@
 var pool = require('./bd');
 
 async function getObras() {
-    var query = 'select * from obras join teatros on obras.id_teatro = teatros.id_teatro ';
+    var query = 'select obras.id_obra, obras.nombre_obra, obras.id_teatro, obras.elenco, obras.direccion, obras.resumen, obras.horario_funciones, obras.fecha_inicio, obras.fecha_fin, obras.clasificacion, obras.img_id_obra, teatros.nombre_teatro from obras join teatros on obras.id_teatro = teatros.id_teatro ';
     var rows = await pool.query(query);
     return rows
 }
